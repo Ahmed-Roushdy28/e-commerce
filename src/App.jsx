@@ -1,5 +1,7 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
+import { FaHeart } from "react-icons/fa6";
 import MainLayout from './Pages/MainLayout/MainLayout';
 import Home from "./Pages/Home/Home"
 import Products from "./Pages/Products/Products"
@@ -12,6 +14,9 @@ import { UserContextProvider } from './Context/UserContext';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import ProductDetails from './Components/ProductDetails/ProductDetails';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from './../node_modules/@tanstack/react-query-devtools/src/production';
+import CartContextProvider, { CartContext } from './Context/CartContext';
+
 let query = new QueryClient
 
 function App() {
@@ -27,11 +32,15 @@ const routes = createBrowserRouter([
   ]
   }
 ])
-  return <QueryClientProvider client={query} >
-    <UserContextProvider>
-    <RouterProvider router={routes}></RouterProvider>
-  </UserContextProvider>
-  </QueryClientProvider>
+  return <CartContextProvider>
+            <QueryClientProvider client={query} >
+                <UserContextProvider>
+                  <RouterProvider router={routes}></RouterProvider>
+                  <ReactQueryDevtools/>
+                </UserContextProvider>
+              </QueryClientProvider>
+          </CartContextProvider>
+
 }
 
 export default App

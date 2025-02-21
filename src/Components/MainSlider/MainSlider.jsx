@@ -16,8 +16,8 @@ export default function MainSlider() {
 
   };
   return (
-    <div className='row mx-20 '>
-      <div className="rounded-full overflow-hidden flex">
+    <div className='row w-1/2 mx-auto'>
+      <div className=" overflow-hidden flex">
       <div className="w-3/4">
       <Slider {...settings}>
       <img src={img1} className='w-full h-[300px]' alt="" />

@@ -7,14 +7,20 @@ import { useQuery } from '@tanstack/react-query';
 import { CircleLoader, ClimbingBoxLoader, PacmanLoader } from 'react-spinners';
 import Products from './../Products/Products';
 import axios from 'axios';
-import { h3 } from 'fontawesome';
+import { ReactQueryDevtools } from './../../../node_modules/@tanstack/react-query-devtools/src/production';
+
 
 export default function Home() {
 function getRecent(){
   return axios.get(`https://ecommerce.routemisr.com/api/v1/products`)
 }
  let {data , error , isError , isLoading , isFetching} = useQuery({queryKey:['recentProducts'],
-      queryFn:getRecent
+      queryFn:getRecent,
+      staleTime:3000,
+      retry:6,
+      retryDelay:3000,
+      refetchInterval:10000,
+
    })
    if(isLoading){
     return <div className="flex items-center justify-center h-screen">
@@ -28,7 +34,7 @@ function getRecent(){
     <>
     <MainSlider/>
     <CategorySlider/>
-    <RecentProducts Products={data?.data.data}/>
+    <RecentProducts Products={data?.data?.data}/>
     </>
   )
 }
