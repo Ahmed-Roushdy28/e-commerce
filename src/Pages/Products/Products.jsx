@@ -1,13 +1,34 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import style from './Products.module.css'
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { PacmanLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 import useProducts from '../../Hooks/UseProducts';
+import { CartContext } from '../../Context/CartContext';
+import toast from 'react-hot-toast';
 
 export default function Products() {
   let {data , error , isError , isLoading , isFetching} = useProducts()
+  let {addToCart} = useContext(CartContext)
+  async function addProduct(productId){
+    let response = await addToCart(productId)
+    if(response.data.status === 'success'){
+      console.log(response);
+      
+       toast.success('Your item added successfuly' ,{
+        duration:1500,
+
+       }
+       )
+       
+    }else{
+       toast.error('Something went wrong')
+       
+    }
+    
+    console.log(response);
+ }
      if(isLoading){
       return <div className="flex items-center justify-center h-screen">
         <PacmanLoader color='green'/>
@@ -46,7 +67,7 @@ export default function Products() {
         </Link>
         {/* Buttons are inside .product but outside Link */}
         <div className="flex justify-between mt-4">
-          <button className="btn w-9/12 bg-green-600">
+          <button onClick={()=>addProduct(product.id)}  className="btn w-9/12 bg-green-600">
             Add To
             <i className="fa-solid fa-cart-plus ms-2 hover:text-yellow-300 transition-all duration-500"></i>
           </button>

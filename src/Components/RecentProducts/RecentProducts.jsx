@@ -7,30 +7,30 @@ import { Link } from 'react-router-dom';
 import { ClimbingBoxLoader } from 'react-spinners';
 import { CartContext } from '../../Context/CartContext';
 import { UserContext } from '../../Context/UserContext';
+import { WishListContext } from '../../Context/WishListContext';
 import toast from 'react-hot-toast';
 
 export default function RecentProducts({Products}) {
    let { userLogin } = useContext(UserContext);
-
-   let {addToCart} = useContext(CartContext)
+   let { addToCart } = useContext(CartContext);
+   let { addToWish } = useContext(WishListContext);
 
    async function addProduct(productId){
-      let response = await addToCart(productId)
+      let response = await addToCart(productId);
       if(response.data.status === 'success'){
-        console.log(response);
-        
-         toast.success('Your item added successfuly' ,{
-          duration:1500,
-
-         }
-         )
-         
-      }else{
-         toast.error('Something went wrong')
-         
+         toast.success('Your item added successfully', { duration: 1500 });
+      } else {
+         toast.error('Something went wrong');
       }
-      
-      console.log(response);
+   }
+
+   async function addToWishlist(productId){
+      let response = await addToWish(productId);
+      if(response.data.status === 'success'){
+         toast.success('Item added to wishlist!', { duration: 1500 });
+      } else {
+         toast.error('Could not add to wishlist');
+      }
    }
 
   return <>
@@ -49,31 +49,12 @@ export default function RecentProducts({Products}) {
             </div>
           </Link>
           <div className="flex justify-center gap-2 mt-4">
-            <button onClick={()=> addProduct(product.id)}  className="btn w-9/12 bg-green-600">Add To <i className="fa-solid fa-cart-plus ms-2 hover:text-yellow-300 transition-all duration-500"></i></button>
-            <button className="btn w-2/12"><i className="fa-solid fa-heart text-black text-2xl hover:text-red-700 transition-all duration-500"></i></button>
+            <button onClick={()=> addProduct(product.id)} className="btn w-9/12 bg-green-600">Add To <i className="fa-solid fa-cart-plus ms-2 hover:text-yellow-300 transition-all duration-500"></i></button>
+            <button onClick={()=> addToWishlist(product.id)} className="btn w-2/12"><i className="fa-solid fa-heart text-black text-2xl hover:text-red-700 transition-all duration-500"></i></button>
           </div>
         </div>
       </div>
     ))}
   </div>
 </>
-
-  
 }
-
-
-
-   // const [recentProducts , setRecentProducts] = useState([])
-   // function getRecentProducts(){
-   //    axios.get(`https://ecommerce.routemisr.com/api/v1/products`)
-   //    .then(({data})=>{
-   //       setRecentProducts(data.data)
-         
-   //    })
-   //    .catch((error)=>{})
-   // }
-
-   // useEffect(() => {
-   //   getRecentProducts()
-   
-   // }, [])

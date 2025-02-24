@@ -2,10 +2,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import style from './Cart.module.css'
 import { CartContext } from '../../Context/CartContext';
 export default function Cart() {
-  let {getCart , removeCart} = useContext(CartContext)
+  let {getCart , removeCart , updateCart} = useContext(CartContext)
   const [cartDetails, setCartDetails] = useState(null)
+  
   async function awaitGetCart(){
     let response = await getCart();
+    setCartDetails(response.data)
+    
+  }
+  async function updateQuantity(productId , count){
+    let response = await updateCart(productId , count);
     setCartDetails(response.data)
     
   }
@@ -32,10 +38,10 @@ export default function Cart() {
   <thead className="text-xs text-gray-700 uppercase bg-white dark:bg-gray-800 dark:text-gray-400">
   <tr className="w-full">
     <td className="text-left w-1/2 ps-10">
-      <h3 className="text-2xl font-semibold">Total Price:</h3>
+      <h3 className="text-2xl font-semibold">Total Price:  {cartDetails?.data.products.reduce((acc, product) => acc + product.price * product.count, 0)}</h3>
     </td>
     <td className="text-right w-1/2 pe-10">
-      <h3 className="text-2xl font-semibold">Items Count:</h3>
+      <h3 className="text-2xl font-semibold">Items Count: {cartDetails?.data.products.reduce((acc, product) => acc + product.count, 0)}</h3>
     </td>
   </tr>
 </thead>
@@ -57,7 +63,7 @@ export default function Cart() {
         </td>
         <td className="px-6 py-4">
         <div className="flex items-center">
-  <button className="inline-flex items-center justify-center py-5 me-3 text-sm font-medium h-6 w-10 text-gray-500 bg-white border border-gray-300 rounded-lg focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+  <button onClick={()=> updateQuantity(product.product.id , product.count-1)} disabled={product.count === 1} className= {` inline-flex items-center justify-center py-5 me-3 text-sm font-medium h-6 w-10 text-gray-500 bg-white border border-gray-300 rounded-lg focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700  ${product.count === 1 ? "opacity-50 cursor-not-allowed" : ""} `} type="button ">
     <span className="sr-only">Quantity button</span>
     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M1 1h16" />
@@ -66,7 +72,7 @@ export default function Cart() {
   <div>
     <h3 className='text-lg'>{product.count}</h3>
   </div>
-  <button className="inline-flex items-center justify-center h-6 w-10 py-5 px-1 ms-3 text-lg font-medium text-gray-500 bg-white border border-gray-300 rounded-lg focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+  <button onClick={()=> updateQuantity(product.product.id , product.count+1)} className="inline-flex items-center justify-center h-6 w-10 py-5 px-1 ms-3 text-lg font-medium text-gray-500 bg-white border border-gray-300 rounded-lg focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button ">
     <span className="sr-only">Quantity button</span>
     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 1v16M1 9h16" />

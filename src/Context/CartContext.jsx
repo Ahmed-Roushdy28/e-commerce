@@ -20,6 +20,15 @@ export default function CartContextProvider(props) {
       .then((response)=>response)
       .catch((error)=>error)
    }
+   async function updateCart(productId , count){
+      return await axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${productId}` ,{
+         count:count
+      },{
+         headers:headers
+      })
+      .then((response)=>response)
+      .catch((error)=>error)
+   }
    async function addToCart(productId) {
       return await axios.post(`https://ecommerce.routemisr.com/api/v1/cart`, {
          productId:productId
@@ -29,7 +38,7 @@ export default function CartContextProvider(props) {
       .then((response)=> response)
       .catch((err)=> err)
    }
-return <CartContext.Provider value={{addToCart , getCart , removeCart}} >
+return <CartContext.Provider value={{addToCart , getCart , removeCart , updateCart}} >
    {props.children}
 
 </CartContext.Provider>

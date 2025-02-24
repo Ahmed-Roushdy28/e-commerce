@@ -74,6 +74,14 @@ export default function Navbar() {
                 </li>
                 <li>
                   <NavLink
+                    to={"wishlist"}
+                    className="block py-2 px-3  md:hover:text-green-700 rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-blue-500"
+                  >
+                    WishList
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
                     to={'products'}
                     className="block py-2 px-3  md:hover:text-green-700 rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-blue-500"
                   >
