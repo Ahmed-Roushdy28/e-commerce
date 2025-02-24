@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { ClimbingBoxLoader } from 'react-spinners';
 import { CartContext } from '../../Context/CartContext';
 import { UserContext } from '../../Context/UserContext';
+import toast from 'react-hot-toast';
 
 export default function RecentProducts({Products}) {
    let { userLogin } = useContext(UserContext);
@@ -16,10 +17,16 @@ export default function RecentProducts({Products}) {
    async function addProduct(productId){
       let response = await addToCart(productId)
       if(response.data.status === 'success'){
-         console.log('add');
+        console.log(response);
+        
+         toast.success('Your item added successfuly' ,{
+          duration:1500,
+
+         }
+         )
          
       }else{
-         console.log('error');
+         toast.error('Something went wrong')
          
       }
       
@@ -32,7 +39,6 @@ export default function RecentProducts({Products}) {
       <div key={product.id} className="w-full md:w-1/3 lg:w-1/6 px-6 py-6">
         <div className="product text-center">
           <Link to={`/productDetails/${product.id}/${product.category.name}`}
-          onClick={() => localStorage.setItem('userToken', userLogin)}
           >
             <img className="w-full rounded-full" src={product.imageCover} alt={product.title} />
             <span className="block font-light text-green-600">{product.category.name}</span>

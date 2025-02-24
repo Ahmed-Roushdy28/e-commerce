@@ -27,8 +27,8 @@ export default function Login() {
       .post(`https://ecommerce.routemisr.com/api/v1/auth/signin`, formvalues)
       .then((apiResponse) => {
         if(apiResponse?.data?.message === 'success')
-          localStorage.setItem('userToken' , apiResponse.data.message )
-        setuserLogin(apiResponse.data.message)
+          localStorage.setItem('userToken' , apiResponse.data.token )
+        setuserLogin(apiResponse.data.token)
         navigate('/');
         setIsloading(false);
         

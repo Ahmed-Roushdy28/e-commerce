@@ -16,6 +16,7 @@ import ProductDetails from './Components/ProductDetails/ProductDetails';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from './../node_modules/@tanstack/react-query-devtools/src/production';
 import CartContextProvider, { CartContext } from './Context/CartContext';
+import { Toaster } from 'react-hot-toast';
 
 let query = new QueryClient
 
@@ -36,6 +37,7 @@ const routes = createBrowserRouter([
             <QueryClientProvider client={query} >
                 <UserContextProvider>
                   <RouterProvider router={routes}></RouterProvider>
+                  <Toaster/>
                   <ReactQueryDevtools/>
                 </UserContextProvider>
               </QueryClientProvider>
