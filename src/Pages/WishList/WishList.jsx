@@ -13,7 +13,9 @@ export default function WishList() {
 
   async function awaitRemoveWish(productId) {
     let response = await removeWish(productId);
-    setWishListDetails(response.data);
+    if (response.status === 200) { 
+      awaitGetWish();
+    }
   }
 
   useEffect(() => {

@@ -21,17 +21,14 @@ export default function WishListContextProvider(props) {
   .catch((error)=>error)
 }
 async function addToWish(productId) {
-  try {
-     let response = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/wishlist/${productId}`, 
-        {},  // Empty body
-        { headers }
-     );
-     return response.data;  
-  } catch (err) {
-     console.error("Wishlist Error:", err.response?.data || err.message);
-     return { status: "error", message: "Failed to add to wishlist" };
-  }
+  return await axios.post(
+    `https://ecommerce.routemisr.com/api/v1/wishlist/`,{
+      productId:productId
+    },
+    {headers:headers}
+  )
+  .then((response) => response)
+  .catch((error) => error);
 }
  return <WishListContext.Provider value={{getWish , removeWish , addToWish}}>
   {props.children}

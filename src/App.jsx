@@ -19,6 +19,9 @@ import CartContextProvider, { CartContext } from './Context/CartContext';
 import { Toaster } from 'react-hot-toast';
 import WishList from "./Pages/WishList/WishList"
 import WishListContextProvider from './Context/WishListContext';
+import CheckOut from './Components/CheckOut/CheckOut';
+import Orders from './Components/Orders/Orders';
+
 let query = new QueryClient
 
 function App() {
@@ -29,7 +32,9 @@ const routes = createBrowserRouter([
     {path:'productdetails/:id/:category',element:<ProtectedRoute><ProductDetails /></ProtectedRoute>  },
     {path:'cart', element:<ProtectedRoute><Cart /></ProtectedRoute>  },
     {path:'wishlist', element:<ProtectedRoute><WishList /></ProtectedRoute>  },
+    {path:'checkout', element:<ProtectedRoute><CheckOut /></ProtectedRoute>  },
     {path:'categories', element:<ProtectedRoute><Categories/></ProtectedRoute>  },
+    {path:'allorders', element:<ProtectedRoute><Orders/></ProtectedRoute>  },
     {path:'login',element: <Login /> },
     {path:'register', element: <Register/> },
   ]

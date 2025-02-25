@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import style from './Cart.module.css'
 import { CartContext } from '../../Context/CartContext';
+import { Link } from 'react-router-dom';
 export default function Cart() {
   let {getCart , removeCart , updateCart} = useContext(CartContext)
   const [cartDetails, setCartDetails] = useState(null)
@@ -8,6 +9,7 @@ export default function Cart() {
   async function awaitGetCart(){
     let response = await getCart();
     setCartDetails(response.data)
+    console.log(response.data);
     
   }
   async function updateQuantity(productId , count){
@@ -32,8 +34,10 @@ export default function Cart() {
 <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-20">
   <div className="flex justify-between mx-10 my-8">
   <h2 className='text-3xl font-bold'>Cart Shop</h2>
+  <Link to={'/CheckOut'}>
   <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ">Check out</button>
-  </div>
+  </Link>
+ </div>
   <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
   <thead className="text-xs text-gray-700 uppercase bg-white dark:bg-gray-800 dark:text-gray-400">
   <tr className="w-full">
