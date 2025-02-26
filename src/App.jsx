@@ -22,6 +22,10 @@ import WishListContextProvider from './Context/WishListContext';
 import CheckOut from './Components/CheckOut/CheckOut';
 import Orders from './Components/Orders/Orders';
 import Brands from './Pages/Brands/Brands';
+import ForgetPassword from './Pages/ForgetPassword/ForgetPassword';
+import ResetPassword from './Pages/ResetPassword/ResetPassword';
+import Verify from './Pages/VerifyCode/Verify';
+import NotFound from './Components/NotFound/NotFound';
 
 
 let query = new QueryClient
@@ -40,6 +44,10 @@ const routes = createBrowserRouter([
     {path:'allorders', element:<ProtectedRoute><Orders/></ProtectedRoute>  },
     {path:'login',element: <Login /> },
     {path:'register', element: <Register/> },
+    {path:'forgetpassword', element: <ForgetPassword/> },
+    {path:'verify', element: <Verify/> },
+    {path:'resetpassword', element: <ResetPassword/> },
+    {path:'*', element: <NotFound/> },
   ]
   }
 ])

@@ -12,10 +12,31 @@ export default function CategorySlider() {
     slidesToScroll: 1,
     swipeToSlide: true,
     touchThreshold: 10,
-    autoplay:true ,
-    autoplaySpeed:0 ,
-    cssEase: "linear"
+    autoplay: true,
+    autoplaySpeed: 0,
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
   };
+  
   const [categories , setCategories] = useState([])
   function getCategories(){
      axios.get(`https://ecommerce.routemisr.com/api/v1/categories`)

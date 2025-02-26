@@ -122,7 +122,7 @@ export default function Login() {
               }
               
             </button>
-            <small className="ml-auto my-auto">Don't have an email yet ? <Link to={'/register'} className="text-green-700 underline-offset-4 underline font-bold">Register Now</Link></small>
+            <small> <Link to={'/forgetpassword'} className="ml-auto my-auto text-green-700 underline-offset-4 underline font-bold">Forgot Your Password ?</Link></small>
           </div>
         </form>
       </div>
