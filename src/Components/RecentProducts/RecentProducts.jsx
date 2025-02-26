@@ -9,8 +9,8 @@ export default function RecentProducts({ Products }) {
   let { addToWish, removeWish, getWish } = useContext(WishListContext);
   
   const [wishlist, setWishlist] = useState(new Set());
+  const [searchTerm, setSearchTerm] = useState('');
 
-  // Fetch wishlist on mount and when wishlist changes
   useEffect(() => {
     async function fetchWishlist() {
       let response = await getWish();
@@ -55,31 +55,48 @@ export default function RecentProducts({ Products }) {
     }
   }
 
+  const filteredProducts = Products?.filter((product) =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="row">
-      {Products?.map((product) => (
-        <div key={product.id} className="w-full md:w-1/3 lg:w-1/6 px-6 py-6">
-          <div className="product text-center">
-            <Link to={`/productDetails/${product.id}/${product.category.name}`}>
-              <img className="w-full rounded-full" src={product.imageCover} alt={product.title} />
-              <span className="block font-light text-green-600">{product.category.name}</span>
-              <h3 className="mb-4 text-lg font-normal text-gray-800 line-clamp-1">{product.title}</h3>
-              <div className="justify-between items-center flex">
-                <span>{product.price} EGP</span>
-                <span>{product.ratingsAverage} <i className="fa fa-star text-green-600"></i></span>
+    <div>
+      {/* Centered Search Input */}
+      <div className="flex justify-center my-4">
+        <input
+          type="text"
+          placeholder="Search products..."
+          className="w-1/2 min-w-[300px] p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      <div className="row">
+        {filteredProducts?.map((product) => (
+          <div key={product.id} className="w-full md:w-1/3 lg:w-1/6 px-6 py-6">
+            <div className="product text-center">
+              <Link to={`/productDetails/${product.id}/${product.category.name}`}>
+                <img className="w-full rounded-full" src={product.imageCover} alt={product.title} />
+                <span className="block font-light text-green-600">{product.category.name}</span>
+                <h3 className="mb-4 text-lg font-normal text-gray-800 line-clamp-1">{product.title}</h3>
+                <div className="justify-between items-center flex">
+                  <span>{product.price} EGP</span>
+                  <span>{product.ratingsAverage} <i className="fa fa-star text-green-600"></i></span>
+                </div>
+              </Link>
+              <div className="flex justify-center gap-2 mt-4">
+                <button onClick={() => addProduct(product.id)} className="btn w-9/12 bg-green-600">
+                  Add To <i className="fa-solid fa-cart-plus ms-2 hover:text-yellow-300 transition-all duration-500"></i>
+                </button>
+                <button onClick={() => toggleWishlist(product._id)} className="btn w-2/12">
+                  <i className={`fa-solid fa-heart text-2xl transition-all duration-500 ${wishlist.has(product._id) ? 'text-red-700' : 'text-black'}`}></i>
+                </button>
               </div>
-            </Link>
-            <div className="flex justify-center gap-2 mt-4">
-              <button onClick={() => addProduct(product.id)} className="btn w-9/12 bg-green-600">
-                Add To <i className="fa-solid fa-cart-plus ms-2 hover:text-yellow-300 transition-all duration-500"></i>
-              </button>
-              <button onClick={() => toggleWishlist(product._id)} className="btn w-2/12">
-                <i className={`fa-solid fa-heart text-2xl transition-all duration-500 ${wishlist.has(product._id) ? 'text-red-700' : 'text-black'}`}></i>
-              </button>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
