@@ -22,8 +22,8 @@ export default function Cart() {
   }
 
   async function handleClearCart() {
-    await removeCart(); // Clear cart from API
-    setCartDetails({ data: { products: [] } }); // Instantly update UI
+    await removeCart();
+    setCartDetails({ data: { products: [] } });
   }
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export default function Cart() {
           ))}
         </tbody>
       </table>
-      
+
       {cartDetails?.data.products.length > 0 && (
         <div className="flex justify-center p-4">
           <button onClick={handleClearCart} className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-lg px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">

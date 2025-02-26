@@ -46,18 +46,17 @@ export default function Brands() {
         ))}
       </div>
 
-      {/* Modal */}
-{/* Modal */}
+
 {isModalOpen && (
   <div 
     className="fixed inset-0 flex justify-center items-start pt-20 bg-black bg-opacity-50"
-    onClick={closeModal} // Closes modal when clicking outside
+    onClick={closeModal} 
   >
     <div 
       className="bg-white p-6 rounded-lg w-[600px] h-[400px] flex flex-col justify-between shadow-lg mx-auto"
       onClick={(e) => e.stopPropagation()}
     >
-      {/* Close (X) Button */}
+
       <div className="w-full text-right border-b pb-2">
         <button 
           className="text-gray-600 hover:text-gray-900 text-2xl"
@@ -67,9 +66,9 @@ export default function Brands() {
         </button>
       </div>
 
-      {/* Modal Content */}
+
       <div className="flex flex-grow w-full">
-        {/* Left Side (Text) */}
+
         <div className="w-1/2 flex flex-col justify-center px-6">
           <h2 className="text-3xl font-bold italic text-green-600 pb-5">
             {selectedBrand?.name}
@@ -79,7 +78,7 @@ export default function Brands() {
           </p>
         </div>
 
-        {/* Right Side (Image) */}
+
         <div className="w-1/2 flex items-center justify-center">
           <img 
             src={selectedBrand?.image} 
@@ -89,7 +88,7 @@ export default function Brands() {
         </div>
       </div>
 
-      {/* Close Button at Bottom (inside modal) */}
+
       <div className="border-t pt-4 flex justify-center">
         <button 
           className="bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-700"

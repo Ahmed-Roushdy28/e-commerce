@@ -25,17 +25,17 @@ export default function CartContextProvider(props) {
    try {
      let response;
      if (productId) {
-       // Remove a single product
+
        response = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`, { headers });
      } else {
-       // Clear the entire cart
+
        response = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart`, { headers });
      }
  
-     // Fetch the updated cart after removal
+
      let updatedCart = await getCart();
      
-     // Update state immediately
+
      setCart(updatedCart.data || { data: { products: [] } });
  
      return response;

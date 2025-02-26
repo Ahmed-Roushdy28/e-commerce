@@ -27,14 +27,13 @@ export default function Navbar() {
     <>
       <nav className="z-50 fixed top-0 left-0 w-full bg-gray-100 border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
-          {/* Logo on the left */}
+
           <div className="flex items-center">
             <Link to={''} className="flex items-center space-x-3 rtl:space-x-reverse pr-4">
               <img src={logo} className="h-8 me-3" alt="FlowBite Logo" />
             </Link>
           </div>
 
-          {/* Hamburger button on the right for smaller screens */}
           <div className="flex lg:hidden">
             <button
               onClick={toggleMenu}
@@ -50,7 +49,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Menu items */}
           <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full lg:block lg:w-auto`} id="navbar-default">
             <ul className="font-medium flex flex-col lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-0 lg:border-0 bg-white lg:bg-transparent dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700 rounded-lg lg:rounded-none">
               {userLogin !== null && (
@@ -66,7 +64,6 @@ export default function Navbar() {
             </ul>
           </div>
 
-          {/* Social icons and logout */}
           <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full lg:block lg:w-auto`} id="navbar-default">
             <ul className="font-medium flex flex-col lg:flex-row lg:space-x-8 rtl:space-x-reverse lg:mt-0 lg:border-0 bg-white lg:bg-transparent dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700 rounded-lg lg:rounded-none items-center p-1">
               {userLogin !== null && (

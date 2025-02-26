@@ -10,7 +10,7 @@ export default function CategorySlider() {
     speed: 1500,
     slidesToShow: 8,
     slidesToScroll: 1,
-    swipeToSlide: true, // Allows free scrolling
+    swipeToSlide: true,
     touchThreshold: 10,
     autoplay:true ,
     autoplaySpeed:0 ,

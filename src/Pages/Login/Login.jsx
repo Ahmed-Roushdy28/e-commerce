@@ -118,7 +118,7 @@ export default function Login() {
               className="text-white mr-auto bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             >
               {
-                isloading?<i className="fa fa-spinner fa-spin"></i>:'submit'
+                isloading?<i className="fa fa-spinner fa-spin"></i>:'Login Now'
               }
               
             </button>
@@ -129,30 +129,3 @@ export default function Login() {
     </>
   );
 }
-// let navigate = useNavigate();
-//   async function handleRegister(formValues) {
-//     let {data} = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup` , formValues)
-//     if (data.message === "success"){
-//       navigate('/')
-//     }else{
-
-//     }
-//   }
-//   let formik = useFormik({
-//     initialValues:{
-// name:'',
-// email:'',
-// password:'',
-// rePassword:'',
-// phone:''
-//     },
-//     onSubmit:handleRegister
-//   })
-
-// let navigate = useNavigate();
-// async function handleRegister(formvalues) {
-//   let {data} = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup' , formvalues)
-//   if (data.message === 'success'){
-//     navigate('/')
-//   }
-// }

@@ -69,7 +69,6 @@ useEffect(() => {
       <span>{productDetails?.ratingsAverage} <i className="fa fa-star text-green-600"></i></span>
     </div>
 
-    {/* Buttons moved outside any potential Link */}
     <div className="flex justify-between mt-6">
       <button className="btn w-9/12 bg-green-600">
         Add To <i className="fa-solid fa-cart-plus ms-2 hover:text-yellow-300 transition-all duration-500"></i>
@@ -98,7 +97,6 @@ useEffect(() => {
           </div>
         </Link>
 
-        {/* Buttons moved outside the Link but still inside the Product div */}
         <div className="flex justify-between mt-4">
           <button className="btn w-9/12 bg-green-600">
             Add To <i className="fa-solid fa-cart-plus ms-2 hover:text-yellow-300 transition-all duration-500"></i>
