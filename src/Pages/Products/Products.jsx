@@ -94,7 +94,7 @@ export default function Products() {
         {filteredProducts?.map((product) => (
           <div
             key={product.id}
-            className="w-full md:w-1/3 lg:w-1/4 px-6 py-6 border-0 md:border-2 border-transparent hover:border-green-500 transition-all duration-300 overflow-visible md:overflow-hidden"
+            className="w-full rounded-md md:w-1/3 lg:w-1/4 px-6 py-6 border-0 md:border-2 border-transparent hover:border-green-500 transition-all duration-300 overflow-visible md:overflow-hidden"
           >
             <div className="product text-center">
               <Link to={`/productDetails/${product.id}/${product.category.name}`}>

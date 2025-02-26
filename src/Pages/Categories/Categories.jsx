@@ -24,11 +24,11 @@ export default function Categories() {
 
   return (
     <>
-      <div className='row flex flex-wrap '>
+      <div className='row '>
         {categories?.map((category) => (
           <div key={category._id} className="w-full lg:w-1/3 md:w-1/2 px-6 py-4">
             <div
-              className="category flex flex-col border items-center justify-center cursor-pointer"
+              className="category shadow-lg transition-all duration-300 hover:shadow-green-300 flex flex-col border items-center justify-center cursor-pointer"
               onClick={() => {
                 setSelectedCategory(category);
                 getSubCategories(category._id);
