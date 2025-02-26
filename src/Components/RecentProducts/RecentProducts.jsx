@@ -48,7 +48,6 @@ export default function RecentProducts({ Products }) {
       }
     }
 
-    // Re-fetch updated wishlist
     let updatedWishlist = await getWish();
     if (updatedWishlist?.data?.status === 'success') {
       setWishlist(new Set(updatedWishlist.data.data.map((item) => item._id)));
@@ -61,7 +60,6 @@ export default function RecentProducts({ Products }) {
 
   return (
     <div>
-      {/* Centered Search Input */}
       <div className="flex justify-center my-4">
         <input
           type="text"

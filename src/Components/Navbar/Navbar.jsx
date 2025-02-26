@@ -5,6 +5,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../assets/freshcart-logo.svg'
 import { UserContext } from "../../Context/UserContext";
 import { CartContext } from "../../Context/CartContext";
+import Brands from './../../Pages/Brands/Brands';
 
 export default function Navbar() {
   let navigate = useNavigate();
@@ -59,6 +60,7 @@ export default function Navbar() {
                   <li><NavLink to="wishlist" className="block py-2 px-3 lg:hover:text-green-700 rounded lg:bg-transparent lg:p-0 dark:text-white lg:dark:text-blue-500 no-underline ">WishList</NavLink></li>
                   <li><NavLink to="products" className="block py-2 px-3 lg:hover:text-green-700 rounded lg:bg-transparent lg:p-0 dark:text-white lg:dark:text-blue-500 no-underline ">Products</NavLink></li>
                   <li><NavLink to="categories" className="block py-2 px-3 lg:hover:text-green-700 rounded lg:bg-transparent lg:p-0 dark:text-white lg:dark:text-blue-500 no-underline ">Categories</NavLink></li>
+                  <li><NavLink to="brands" className="block py-2 px-3 lg:hover:text-green-700 rounded lg:bg-transparent lg:p-0 dark:text-white lg:dark:text-blue-500 no-underline ">Brands</NavLink></li>
                 </>
               )}
             </ul>

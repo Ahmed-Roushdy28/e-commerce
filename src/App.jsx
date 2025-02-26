@@ -21,6 +21,8 @@ import WishList from "./Pages/WishList/WishList"
 import WishListContextProvider from './Context/WishListContext';
 import CheckOut from './Components/CheckOut/CheckOut';
 import Orders from './Components/Orders/Orders';
+import Brands from './Pages/Brands/Brands';
+
 
 let query = new QueryClient
 
@@ -34,6 +36,7 @@ const routes = createBrowserRouter([
     {path:'wishlist', element:<ProtectedRoute><WishList /></ProtectedRoute>  },
     {path:'checkout', element:<ProtectedRoute><CheckOut /></ProtectedRoute>  },
     {path:'categories', element:<ProtectedRoute><Categories/></ProtectedRoute>  },
+    {path:'brands', element:<ProtectedRoute><Brands/></ProtectedRoute>  },
     {path:'allorders', element:<ProtectedRoute><Orders/></ProtectedRoute>  },
     {path:'login',element: <Login /> },
     {path:'register', element: <Register/> },
