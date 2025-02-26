@@ -3,8 +3,7 @@
 @tailwind utilities;
 .active{
    color: green;
-   border-radius: 30%;
-   border-bottom: 3px solid #000;
+
 }
 .row{
    @apply flex flex-wrap py-8 items-center px-4
